@@ -20,6 +20,7 @@
         // Fehler anzeigen (nicht im Livebetrieb)
         error_reporting(E_ALL | E_STRICT);
 
+        //Verbindungsdaten für die Datenbank
         $servername = "localhost";
         $username = "root";
         $password = "";
