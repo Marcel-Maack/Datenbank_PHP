@@ -18,61 +18,56 @@
 <h2>Datenbank meinedb Daten einfügen</h2>
 
 <?php
-        
-
+    // nur wenn gesendet gedrückt Verbinung öffnen und Daten übertragen
+    if (isset($_POST ["gesendet"])) {
+        // Fehler anzeigen (nicht im Livebetrieb)
         error_reporting(E_ALL | E_STRICT);
 
+        //Verbindungsdaten für die Datenbank
         $servername = "localhost";
         $username = "root";
         $password = "";
 
         // Create connection
-        $conn = mysqli_connect($servername, $username, $password);
-        // Check connection
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
+        $conn = mysqli_connect($servername, $username, $password, "meinedb");
 
-        // Create database
-        $anfrDatabase = "DROP DATABASE if EXISTS meinedb;";
-        mysqli_query($conn, $anfrDatabase);
+        //alle Werte aus formular aufgenommen
+        $nachname = mysqli_real_escape_string($conn, $_POST["nachname"]);
+        $vorname = mysqli_real_escape_string($conn, $_POST["vorname"]);
+        $gehalt = mysqli_real_escape_string($conn, $_POST["gehalt"]);
+        $geburtsdatum = mysqli_real_escape_string($conn, $_POST["geburtsdatum"]);
 
-        $sql = "CREATE DATABASE meinedb";
-        if (mysqli_query($conn, $sql)) {
-            echo "Database created successfully<hr>";
-        } else {
-            echo "Error creating database: " . mysqli_error($conn)."<hr>";
-        }
-        //$anfr = "drop table if exists tbl_test";
-        $anfrtabelle = "DROP table if EXISTS tbl_personen;";
-        mysqli_query($conn, $anfrtabelle);
-
-        // Tabelle erstellen
-        mysqli_query($conn,"Use meinedb");
-        $sql = "CREATE table tbl_personen(
-                personalnummer int(11) auto_increment Primary key,
-                vorname varchar(30) not null,
-                nachname varchar(30) not null,
-                gehalt decimal(6,2) not null,
-                geburtstag date not null
-                );";
-                if (mysqli_query($conn, $sql)) {
-                    echo "Table created successfully<hr>";
-                } else {
-                    echo "Error creating table: " . mysqli_error($conn)."<hr>";
-                }
         $eingabe ="insert into tbl_personen
                     values
-                    (NULL,'Maack','Marcel',5000.00,'1976-01-20'),
-                    (NULL,'Maack','Marcel',5000.00,'1976-01-20');";
-                    if (mysqli_query($conn, $eingabe)) {
-                        echo "Eingabe successfully<hr>";
-                    } else {
-                        echo "Error creating Eingabe: " . mysqli_error($conn)."<hr>";
-                    }
-        //mysqli_query($conn, $sql);
-        mysqli_close($conn);
- ?>   
+                    (NULL,'".$nachname."','".$vorname."','".$gehalt."','".$geburtsdatum."')";
+
+                    mysqli_query($conn,"SET NAMES UTF-8");
+                    mysqli_query($conn,$eingabe) or die(mysqli_error($conn));
+                    mysqli_close($conn);
+
+    }    
+
+     ?>
+     <!--div id="formular"-->
+         <h2>Daten einlesen</h2>
+         <form action="datenEinfügen.php" method="POST" name="mitarbeiter">
+    <div id="wrapper">
+        <fieldset>
+            <legend>Personaldaten</legend>
+                <p class="pTag"><label>Nachname</label><input type="text" class="ab" name="nachname"></p>
+                <p class="pTag"><label>Vorname</label><input type="text"class="ab" name="vorname"></p>
+                <p class="pTag"><label>Gehalt</label><input type="number" step="0.01" class="ab" name="gehalt"></p>
+                <p class="pTag"><label>Geburtsdatum</label><input type="date" class="ab" name="geburtsdatum"></p>
+
+                <p><input type="submit" name="gesendet" value="Daten abschicken"></p>
+                
+            </fieldset>
+
+            </form>
+        </div>
+            <p><button onclick="window.location.href='datenbankMeinedbAnzeigen.php'">Daten anzeigen</button>
+
+     <!--/div-->
 </body>
 
 </html>

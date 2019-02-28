@@ -55,11 +55,11 @@
         foreach($ds as $index => $wert){ // den key pro Feld auslesen
             echo "<div class ='headline'>".strtoupper($index)."</div>"; //key anzeigen(Überschriften)
         }
-        //====================Inhalte===========================================================
-        mysqli_data_seek($res,0);
+        //====================Inhalte aller Datensätze ermitteln und anzeigen===========================================================
+        mysqli_data_seek($res,0); //Datensatzzeiger zurücksetzen wenn mehr als einmal ausgelesen wird
         for($i=0;$i<$dsAnzahl;$i++){
-            $ds =mysqli_fetch_assoc($res);
-                foreach($ds as $index =>$wert){
+            $ds =mysqli_fetch_assoc($res);//extrahiert jeden Datensatz
+                foreach($ds as $index =>$wert){//oder $ds as $wert bleibt hier gleich
                     echo "<div class ='inhalt'>".$wert."</div>";
                 }
 
@@ -69,7 +69,9 @@
 ?>
 </section>
 
-<p><button onclick="window.location.href='datenEinfügen.php'">Daten einlesen</button></p>
+<p><button onclick="window.location.href='datenEinfügen.php'">Daten einlesen</button>
+<button onclick="window.location.href='datenAendern.php'">Daten ändern</button>
+<button onclick="window.location.href='datenLoeschen.php'">Daten löschen</button></p>
 </body>
 
 </html>
