@@ -12,12 +12,13 @@
 
 
 </head>
+
 <body style="background-color: lightblue">
 
 
-<h2>Datenbank meinedb Daten einfügen</h2>
+    <h2>Datenbank meinedb Daten einfügen</h2>
 
-<?php
+    <?php
     // nur wenn gesendet gedrückt Verbinung öffnen und Daten übertragen
     if (isset($_POST ["gesendet"])) {
         // Fehler anzeigen (nicht im Livebetrieb)
@@ -48,26 +49,37 @@
     }    
 
      ?>
-     <!--div id="formular"-->
-         <h2>Daten einlesen</h2>
-         <form action="datenEinfügen.php" method="POST" name="mitarbeiter">
+    <!--div id="formular"-->
+    <h2>Daten einlesen</h2>
     <div id="wrapper">
-        <fieldset>
-            <legend>Personaldaten</legend>
-                <p class="pTag"><label>Nachname</label><input type="text" class="ab" name="nachname"></p>
-                <p class="pTag"><label>Vorname</label><input type="text"class="ab" name="vorname"></p>
-                <p class="pTag"><label>Gehalt</label><input type="number" step="0.01" class="ab" name="gehalt"></p>
-                <p class="pTag"><label>Geburtsdatum</label><input type="date" class="ab" name="geburtsdatum"></p>
+        <form action="datenEinfügen.php" method="POST" name="mitarbeiter">
 
-                <p><input type="submit" name="gesendet" value="Daten abschicken"></p>
-                
+            <fieldset>
+                <legend>Personaldaten</legend>
+
+                <div class="pTag"><label>Nachname</label>
+                <input type="text" class="ab" name="nachname"></div>
+
+                <div class="pTag"><label>Vorname</label>
+                <input type="text" class="ab" name="vorname"></div>
+
+                <div class="pTag"><label>Gehalt</label>
+                <input type="number" step="0.01" class="ab" name="gehalt"></div>
+
+                <div class="pTag"><label>Geburtsdatum</label>
+                <input type="date" class="ab" name="geburtsdatum"></div>
+
+
+                <div><label></label>
+                <input type="submit" name="gesendet" value="Daten abschicken"></div>
+
             </fieldset>
 
-            </form>
-        </div>
-            <p><button onclick="window.location.href='datenbankMeinedbAnzeigen.php'">Daten anzeigen</button>
+        </form>
+    </div>
+    <p><button onclick="window.location.href='datenbankMeinedbAnzeigen.php'">Daten anzeigen</button>
 
-     <!--/div-->
+        <!--/div-->
 </body>
 
 </html>

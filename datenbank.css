@@ -48,16 +48,30 @@ section {
 
 }
 
-fieldset{
+/*fieldset{
     width:500px;
     border:2px dotted orange;
-}
+}*/
 
-#wrapper{size: 250px;
-        background: yellow;
-        margin:auto;
+#wrapper{width: 30%;
+       /*background: yellow;*/
+        margin:50px auto;
 }
 
 /*.pTag{
     margin: 0 auto;
 }*/
+input {
+    flex: 0 1 60%;
+  }
+  
+  label {
+    flex: 0 1 40%;
+  }
+  
+  div.pTag {
+    display: flex;
+    flex-direction: row;
+    margin: 10px auto;
+    padding: 2px;
+  }
