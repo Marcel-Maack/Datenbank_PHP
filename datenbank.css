@@ -53,14 +53,11 @@ section {
     border:2px dotted orange;
 }*/
 
-#wrapper{width: 30%;
+#wrapper{width: 39%;
        /*background: yellow;*/
         margin:50px auto;
 }
 
-/*.pTag{
-    margin: 0 auto;
-}*/
 input {
     flex: 0 1 60%;
   }

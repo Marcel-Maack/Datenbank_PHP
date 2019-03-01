@@ -58,7 +58,7 @@
                 <legend>Personaldaten</legend>
 
                 <div class="pTag"><label>Nachname</label>
-                <input type="text" class="ab" name="nachname"></div>
+                <input type="text" class="ab" name="nachname" required></div>
 
                 <div class="pTag"><label>Vorname</label>
                 <input type="text" class="ab" name="vorname"></div>
@@ -71,7 +71,7 @@
 
 
                 <div><label></label>
-                <input type="submit" name="gesendet" value="Daten abschicken"></div>
+                <input type="submit" name="gesendet" value="Datensatz abschicken"></div>
 
             </fieldset>
 
